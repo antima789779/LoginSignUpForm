@@ -23,6 +23,32 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const password = e.target.querySelector('input[type="password"]').value;
     const confirmPassword = e.target.querySelectorAll('input[type="password"]')[1].value;
+    const forgotPasswordLink = document.getElementById('forgot-password-link');
+    const forgotPasswordModal = document.getElementById('forgot-password-modal');
+    const closeModalButton = document.getElementById('close-modal');
+
+   
+    forgotPasswordLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        forgotPasswordModal.style.display = 'flex';
+    });
+
+   
+    closeModalButton.addEventListener('click', function() {
+        forgotPasswordModal.style.display = 'none';
+    });
+
+   
+    document.getElementById('submit-recovery').addEventListener('click', function() {
+        const email = document.getElementById('recovery-email').value;
+        if (email) {
+            alert('Recovery instructions sent to ' + email);
+            forgotPasswordModal.style.display = 'none';
+        } else {
+            alert('Please enter your email address.');
+        }
+    });
+
 
     if (password !== confirmPassword) {
         alert("Passwords do not match!");
